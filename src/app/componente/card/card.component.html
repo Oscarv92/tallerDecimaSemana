@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 m-4" *ngFor="let item of datosApi.data.results | paginate: { itemsPerPage: 3, currentPage: pages }">
+            <div class="card" style="height: 650px; width: 300px;">
+                <img style="height: 250px; width: 100%;" src="{{item.thumbnail.path}}.{{item.thumbnail.extension}}" class="card-img-top" alt="{{item.name}}">
+                <div class="card-body" style="height: 250px;">
+                    <h1 class="card-title">{{item.name}}</h1>
+                    <h5 class="text-success">No todos los personajes cuentan con descripción</h5>
+                    <p class="card-text">{{item.description}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{item.id}}</li>
+                    <li class="list-group-item">{{item.modified}}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{item.urls[0].url}}" target="_black" class="card-link">WIKI</a>
+                </div>
+            </div>
+        </div>
+        <pagination-controls (pageChange)="pages = $event"></pagination-controls>
+    </div>
+</div>

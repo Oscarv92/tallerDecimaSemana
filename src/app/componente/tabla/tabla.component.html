@@ -1,0 +1,30 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">descripción</th>
+            <th scope="col">Fecha de modificación</th>
+            <th scope="col">Mas información</th>
+            <th scope="col">Imagen</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let item of datosApi.data.results | paginate: { itemsPerPage: 3, currentPage: pages }">
+        <tr>
+            <th>{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>
+                <h5 class="text-success">No todos los personajes cuentan con descripción</h5>
+                {{item.description}}
+            </td>
+            <td>{{item.modified}}</td>
+            <td>
+                <a href="{{item.urls[0].url}}" target="_black" class="card-link">WIKI</a>
+            </td>
+            <td>
+                <img style="height: 250px;" src="{{item.thumbnail.path}}.{{item.thumbnail.extension}}" class="card-img-top" alt="{{item.name}}">
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="pages = $event"></pagination-controls>
